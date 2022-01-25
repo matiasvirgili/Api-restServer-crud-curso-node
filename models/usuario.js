@@ -1,4 +1,4 @@
-const { Schema, model } = require('mongoose')
+const { Schema, model } = require('mongoose');
 
 const UsuarioSchema = Schema({
   nombre: {
@@ -20,7 +20,7 @@ const UsuarioSchema = Schema({
   rol: {
     type: String,
     required: true,
-    emun: ['ADMIN:ROLE', 'USER_ROLE'],
+    emun: ['ADMIN_ROLE', 'USER_ROLE'],
   },
   estado: {
     type: Boolean,
@@ -30,13 +30,13 @@ const UsuarioSchema = Schema({
     type: Boolean,
     default: false,
   },
-})
+});
 
 // lo que hago con la siguiente funcion lo que hago es ocultar los paramos version y contraseña en la base de datos
 // para luego tambien cuando sea llamado desde el front esos campos no sean visibles
 // uso el parametro rest para que mande todos los campos menos los mensinados antes
 UsuarioSchema.methods.toJSON = function () {
-  const { __v, password, ...usuario } = this.toObject()
-  return usuario
-}
-module.exports = model('Usuario', UsuarioSchema)
+  const { __v, password, ...usuario } = this.toObject();
+  return usuario;
+};
+module.exports = model('Usuario', UsuarioSchema);
