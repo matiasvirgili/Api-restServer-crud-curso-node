@@ -36,7 +36,8 @@ const UsuarioSchema = Schema({
 // para luego tambien cuando sea llamado desde el front esos campos no sean visibles
 // uso el parametro rest para que mande todos los campos menos los mensinados antes
 UsuarioSchema.methods.toJSON = function () {
-  const { __v, password, ...usuario } = this.toObject();
+  const { __v, password, _id, ...usuario } = this.toObject();
+  usuario.uid = _id;
   return usuario;
 };
 module.exports = model('Usuario', UsuarioSchema);
